@@ -12,7 +12,7 @@ In essence, this is **a library that allows for canvas multilayering**. This was
   2. Create a div **with a width and height**
 ```html
 <body>
-  <div style="width: 800px; height: 600px" id="layerCanvas"></canvas>
+  <div style="width: 800px; height: 600px" id="layerCanvas"></div>
   <!-- don't use inline styles :D -->
 </body>
 ``` 
