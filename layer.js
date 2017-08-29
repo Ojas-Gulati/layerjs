@@ -68,7 +68,7 @@ var layersObject = function (canvas) {
             canvasObj.appendChild(newLayer)
         }
         else {
-            document.insertBefore(newLayer, document.getElementById(layersAndData[0].id))
+            canvasObj.insertBefore(newLayer, document.getElementById(layersAndData[0].id))
         }
         layersAndData.splice(0, 0, new individualLayer(id, true))
     }
