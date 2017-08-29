@@ -4,6 +4,7 @@ In essence, this is **a library that allows for canvas multilayering**. This was
 ## Quickstart
   1. Put the script in the head tag
 ```html
+
 <head>
   <script src="layer.js"></script>
 </head>
@@ -19,25 +20,36 @@ In essence, this is **a library that allows for canvas multilayering**. This was
 ```javascript
 var canvas = document.getElementById("layerCanvas");
 var layeredCanvas = new layerObject(canvas)
-layeredCanvas.addToTop("background")
-layeredCanvas.addToBottom("foreground")
-var frontLayer = layeredCanvas.layerContext("background")  // contains the canvas for this layer
-frontLayer.rect()
+layeredCanvas.addToTop("foreground")
+layeredCanvas.addToBottom("background")
+var frontLayer = layeredCanvas.layer("foreground").context  // contains the canvas for this layer
+frontLayer.fillStyle = "#808080"
+frontLayer.rect(20, 20, 60, 60)
+frontLayer.fill()
+var backLayer = layeredCanvas.layer("background").context
+backLayer.rect(0, 0, 80, 80)
+backLayer.fill()
 ```
 
 ## Functions + options
 ```javascript
 new layerObject(canvas)          // Creates a new layer object where canvas points to a div
+layeredCanvas.getLayers()        // Gets a list of layer IDs
 layeredCanvas.addToTop(id)       // Adds a new layer to the top
 layeredCanvas.addToBottom(id)    // Adds a new layer to the bottom
-layeredCanvas.layerContext(id)   // Gets the canvas ctx for the layered canvas
-layeredCanvas.layerElement(id)   // Gets the canvas element for the layered canvas
-layeredCanvas.layers             // Returns an array of layer ids
-layeredCanvas.updateLayers(arr)  // Replaces layeredCanvas.layers with arr (arr is an array of ids)
+layeredCanvas.addAbove(x, y)     // Adds a new layer (y) above x
+layeredCanvas.addBelow(x, y)     // Adds a new layer (x) below y
+layeredCanvas.removeFromTop()    // Removes a layer from the top
+layeredCanvas.removeFromBottom() // Removes a layer from the bottom
+layeredCanvas.remove(id)         // Removes a layer by its id
+layeredCanvas.layer(id)          // Gets a layer object
 
-layeredCanvas.layer(id1).addAbove(id2)    // Creates a layer id2 above id1
-layeredCanvas.layer(id1).addBelow(id2)    // Creates a layer id2 below id1
-layeredCanvas.layer(id).show()            // Shows the specified layer
-layeredCanvas.layer(id).hide()            // Hides the specified layer
-layeredCanvas.layer(id)                   // Returns a Layer object
+layeredCanvas.layer(id).show()       // Shows the specified layer
+layeredCanvas.layer(id).hide()       // Hides the specified layer
+layeredCanvas.layer(id).element      // Returns a pointer to the HTML element of the canvas
+layeredCanvas.layer(id).context      // Returns the 2d context of the layer
+layeredCanvas.layer(id).id           // Gets the id of the referenced layer
+layeredCanvas.layer(id).shownState   // The pointer-events class value when the element is visible
+layeredCanvas.layer(id).hiddenState  // The pointer-events class value when the element is hidden
+layeredCanvas.layer(id)              // Returns a Layer object
 ```
