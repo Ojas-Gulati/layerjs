@@ -24,7 +24,7 @@ layeredCanvas.addToTop("foreground")
 layeredCanvas.addToBottom("background")
 var frontLayer = layeredCanvas.layer("foreground").context  // contains the canvas for this layer
 frontLayer.fillStyle = "#808080"
-frontLayer.rect(20, 20, 60, 60)
+frontLayer.rect(20, 20, 40, 40)
 frontLayer.fill()
 var backLayer = layeredCanvas.layer("background").context
 backLayer.rect(0, 0, 80, 80)
