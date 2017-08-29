@@ -19,7 +19,7 @@ In essence, this is **a library that allows for canvas multilayering**. This was
   3. Make a new `layerObject` and add some layers
 ```javascript
 var canvas = document.getElementById("layerCanvas");
-var layeredCanvas = new layerObject(canvas)
+var layeredCanvas = new layersObject(canvas)
 layeredCanvas.addToTop("foreground")
 layeredCanvas.addToBottom("background")
 var frontLayer = layeredCanvas.layer("foreground").context  // contains the canvas for this layer
